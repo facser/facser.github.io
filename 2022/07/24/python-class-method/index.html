@@ -1,0 +1,746 @@
+<!--
+ * @FilePath: \Blog\facser_blog\themes\fluid\layout\layout.ejs
+ * @Author: facser
+ * @Date: 2022-07-10 20:35:22
+ * @LastEditTime: 2022-07-11 22:16:24
+ * @LastEditors: facser
+ * @Description: 
+-->
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" href="/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="facser">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="python 实例方法 类方法 静态方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 类方法">
+<meta property="og:url" content="https://facser.github.io/2022/07/24/python-class-method/index.html">
+<meta property="og:site_name" content="facser">
+<meta property="og:description" content="python 实例方法 类方法 静态方法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-24T11:02:05.000Z">
+<meta property="article:modified_time" content="2022-07-24T11:03:48.910Z">
+<meta property="article:author" content="facser">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>python 类方法 - facser</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"facser.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+  <script src="/live2d-widget/autoload.js"></script>
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Facser</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="python 类方法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-24 19:02" pubdate>
+          2022年7月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">python 类方法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="python-class-method"><a href="#python-class-method" class="headerlink" title="python class method"></a>python class method</h1><h2 id="引申"><a href="#引申" class="headerlink" title="引申"></a>引申</h2><p>开发的时候用到 logging 模块, 重新封装后发现使用有点麻烦</p>
+<ol>
+<li>多个模块都会用到该模块, logging 多次实例化会导致重复打印</li>
+<li>使用前需要先获取对象, 无法直接使用其方法</li>
+<li>只能实例化一次, 导致模块间使用需要频繁传递该对象</li>
+</ol>
+<p>综上我在思考能否 import 后直接使用, 且不会多次实例化<br>通过查询资料了解到<strong>类方法</strong>和<strong>静态方法</strong></p>
+<p>注: logging 模块可以统一输出格式, 打印在窗口并写入指定文件</p>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><table>
+<thead>
+<tr>
+<th align="center">方法类型</th>
+<th align="center">参数</th>
+<th align="center">装饰器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">实例方法</td>
+<td align="center"><code>self</code></td>
+<td align="center">无</td>
+</tr>
+<tr>
+<td align="center">类方法</td>
+<td align="center"><code>cls</code></td>
+<td align="center"><code>@classmethod</code></td>
+</tr>
+<tr>
+<td align="center">静态方法</td>
+<td align="center">无</td>
+<td align="center"><code>@staticmehtod</code></td>
+</tr>
+</tbody></table>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">People</span>:<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">obj_func</span>(<span class="hljs-params">self</span>):                          <span class="hljs-comment"># 实例方法</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;obj function: <span class="hljs-subst">&#123;self&#125;</span> \n&#x27;</span>)<br><br><span class="hljs-meta">    @classmethod                                 </span><span class="hljs-comment"># 类方法</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">class_func</span>(<span class="hljs-params">cls</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;class function: <span class="hljs-subst">&#123;cls&#125;</span> \n&#x27;</span>)<br><br><span class="hljs-meta">    @staticmethod                                </span><span class="hljs-comment"># 静态方法</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">static_func</span>():<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;static function&#x27;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main&#x27;</span>:<br>    facser = People()<br>    facser.obj_func()<br>    facser.class_func()<br>    facser.static_func()<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">&gt; obj function: &lt;__main__.People <span class="hljs-built_in">object</span> at <span class="hljs-number">0x000002673D477CA0</span>&gt;<br>&gt;<br>&gt; <span class="hljs-keyword">class</span> <span class="hljs-title class_">function</span>: &lt;<span class="hljs-keyword">class</span> <span class="hljs-string">&#x27;__main__.People&#x27;</span>&gt;<br>&gt;<br>&gt; static function<br></code></pre></td></tr></table></figure>
+
+<h2 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h2><p>最常见的方法, 方法的第一个参数为 <code>self</code>, 表示实例对象<br>通过 <code>self</code> 即可调用实例对象属性和方法</p>
+<h3 id="实例可用范围"><a href="#实例可用范围" class="headerlink" title="实例可用范围"></a>实例可用范围</h3><p>实例化对象可以使用哪些属性和方法 ?</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">People</span>:<br>    <br>    name = <span class="hljs-string">&#x27;kertory&#x27;</span>                             <span class="hljs-comment"># 定义类属性 name</span><br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">obj_func</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;obj func: <span class="hljs-subst">&#123;self.name&#125;</span>&#x27;</span>)          <span class="hljs-comment"># 打印对象属性 name</span><br><br><span class="hljs-meta">    @classmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">class_func</span>(<span class="hljs-params">cls</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;class func: <span class="hljs-subst">&#123;cls.name&#125;</span>&#x27;</span>)         <span class="hljs-comment"># 打印类属性 name</span><br><br><span class="hljs-meta">    @staticmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">static_func</span>():                           <span class="hljs-comment"># 静态方法</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;static function&#x27;</span>)   <br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main&#x27;</span>:<br>    facser = People()                            <span class="hljs-comment"># 类实例化成对象 facser</span><br>    facser.obj_func()                            <span class="hljs-comment"># facser 对象调用实例化方法</span><br>    facser.class_func()                          <span class="hljs-comment"># facser 对象调用类方法</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">&gt; obj func: kertory                             <span class="hljs-comment"># 实例方法打印</span><br>&gt; <span class="hljs-keyword">class</span> <span class="hljs-title class_">func</span>: kertory                           <span class="hljs-comment"># 类方法打印</span><br>&gt; static function                               <span class="hljs-comment"># 静态方法打印</span><br></code></pre></td></tr></table></figure>
+
+<p>实例化对象继承了类的属性<br>实例化对象是可以调用<strong>类方法</strong>和<strong>静态方法</strong>的</p>
+<h2 id="类方法"><a href="#类方法" class="headerlink" title="类方法"></a>类方法</h2><p>类方法需要在定义时添加 <code>@classmethod</code> 装饰器, 参数第一个 <code>cls</code> 表示类本身</p>
+<h3 id="类可用范围"><a href="#类可用范围" class="headerlink" title="类可用范围"></a>类可用范围</h3><p>类可以使用哪些属性和方法 ?</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">People</span>:<br>    <br>    name = <span class="hljs-string">&#x27;kertory&#x27;</span>                             <span class="hljs-comment"># 定义类属性 name</span><br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">obj_func</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;obj func: <span class="hljs-subst">&#123;self.name&#125;</span>&#x27;</span>)          <span class="hljs-comment"># 打印对象属性 name</span><br><br><span class="hljs-meta">    @classmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">class_func</span>(<span class="hljs-params">cls</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;class func: <span class="hljs-subst">&#123;cls.name&#125;</span>&#x27;</span>)         <span class="hljs-comment"># 打印类属性 name</span><br><br><span class="hljs-meta">    @staticmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">static_func</span>():                           <span class="hljs-comment"># 静态方法</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;static function&#x27;</span>)   <br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main&#x27;</span>:<br>    People.class_func()                          <span class="hljs-comment"># 类调用类方法</span><br>    People.static_func()                         <span class="hljs-comment"># 类调用静态方法</span><br>    People.obj_func()                            <span class="hljs-comment"># 类调用实例方法</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">&gt; <span class="hljs-keyword">class</span> <span class="hljs-title class_">func</span>: kertory                           <span class="hljs-comment"># 成功执行类方法</span><br>&gt;<br>&gt; static function                               <span class="hljs-comment"># 成功执行静态方法</span><br>&gt; Traceback (most recent call last):<br>&gt;  File <span class="hljs-string">&quot;E:\文档\Python\python_class.py&quot;</span>, line <span class="hljs-number">36</span>, <span class="hljs-keyword">in</span> &lt;module&gt;<br>&gt;    People.obj_func()<br>&gt; TypeError: obj_func() missing <span class="hljs-number">1</span> required positional argument: <span class="hljs-string">&#x27;self&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>类可以使用类方法, 类属性和静态方法<br>类无法使用实例属性和实例方法, 后两者须实例化后才能使用</p>
+<h2 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h2><p>静态方法需要在定义时添加 <code>@staticmethod</code> 装饰器<br>静态方法无法调用类或者实例化对象的属性和方法, 仅是一个普通函数</p>
+<h2 id="总结和实践"><a href="#总结和实践" class="headerlink" title="总结和实践"></a>总结和实践</h2><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>静态方法属于类, 却无法使用类的属性和方法, 可以被类与对象使用</li>
+<li>类方法可调用类属性, 类方法和静态方法, 可以被类与对象使用</li>
+<li>实例化方法可调用类内所有属性方法, 但只可以被实例化对象使用</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="left">可用范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">类</td>
+<td align="left">类方法, 类属性; 静态方法</td>
+</tr>
+<tr>
+<td align="center">对象</td>
+<td align="left">实例方法, 实例属性; 类方法, 类属性; 静态方法</td>
+</tr>
+</tbody></table>
+<h3 id="logging-实践"><a href="#logging-实践" class="headerlink" title="logging 实践"></a>logging 实践</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">logger</span>:<br>    <br>    obj_log = <span class="hljs-literal">None</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">info</span>(<span class="hljs-params">cls, msg</span>):                          <span class="hljs-comment"># 定义类方法, 类可以直接使用</span><br>        <span class="hljs-keyword">try</span>:<br>            cls.obj_log.info(msg)                <span class="hljs-comment"># 正常执行, 表示 logger 类已创建</span><br>        <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> _:<br>            cls.create_logger()                  <span class="hljs-comment"># 执行失败则创建 logger 类后执行</span><br>            cls.obj_log.info(msg)<br>        <span class="hljs-keyword">return</span> msg<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">terminal_handle</span>(<span class="hljs-params">cls</span>):                    <span class="hljs-comment"># 设置窗口打印格式 </span><br>        <span class="hljs-keyword">pass</span><br> <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">file_handle</span>(<span class="hljs-params">cls</span>):                        <span class="hljs-comment"># 设置文本写入打印格式 </span><br>        <span class="hljs-keyword">pass</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">create_logger</span>(<span class="hljs-params">cls</span>):                      <span class="hljs-comment"># 自定义 logger 对象, 赋值给类属性 obj_log</span><br>        cls.obj_log = logging.getLogger()<br>        cls.terminal_handle()<br>        cls.file_handle()<br></code></pre></td></tr></table></figure>
+
+<p>通过类方法解决开头的难点</p>
+<ol>
+<li>仅 <code>create</code> 一次即可, 实例化对象保存在类属性 <code>obj_log</code> 中</li>
+<li>无需实例化封装对象, <code>import</code> 后使用类方法即可</li>
+<li>无需传递对象, 仅 <code>import</code> 即可使用</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/share/" class="category-chain-item">share</a>
+  
+  
+
+      </span>
+    
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/python/" class="category-chain-item">python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/python/">#python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>python 类方法</div>
+      <div>https://facser.github.io/2022/07/24/python-class-method/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>facser</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月24日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/18/Linux/" title="Linux">
+                        <span class="hidden-mobile">Linux</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.5.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.5.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://commets-cn6mxlzwr-facser.vercel.app/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq"],"dark":"html[data-user-color-scheme=\"dark\"]","login":"disable","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"superSample":2,"width":200,"height":350,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":1,"opacityOnHover":0.5},"log":false});</script></body>
+</html>
